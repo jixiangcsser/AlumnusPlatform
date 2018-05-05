@@ -1,0 +1,992 @@
+.buttoncolor {
+    background-color: #ff3c3c;
+    border-color: #ff3c3c;
+  }
+  .fonttype {
+    font: 12px Arial,Helvetica,sans-serif;
+  }
+  body,
+  p,
+  form,
+  input,
+  button,
+  dl,
+  dt,
+  dd,
+  ul,
+  ol,
+  li,
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  body,
+  button,
+  input,
+  select,
+  textarea {
+    font: 12px Arial, Helvetica, sans-serif;
+    color: #333;
+  }
+  input,
+  select,
+  textarea {
+    font-size: 100%;
+  }
+  a {
+    text-decoration: none;
+    color: #333;
+  }
+  a:hover {
+    text-decoration: none;
+    color: #e60012;
+  }
+  a.blue_link {
+    color: #06c;
+  }
+  a.blue_link:hover {
+    color: #f60;
+  }
+  .clearfix:after {
+    display: block;
+    content: ".";
+    height: 0;
+    visibility: hidden;
+    clear: both;
+    font-size: 0;
+    line-height: 0;
+  }
+  .clearfix {
+    *zoom: 1;
+  }
+  img {
+    border: 0 none;
+    vertical-align: top;
+  }
+  em {
+    font-style: normal;
+  }
+  button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+  .wrap {
+    width: 980px;
+    margin: 0 auto;
+  }
+  .fl {
+    float: left;
+  }
+  .fr {
+    float: right;
+  }
+  .mt {
+    margin-top: 10px;
+  }
+  .ml {
+    margin-left: 10px;
+  }
+  .mt5 {
+    margin-top: 5px;
+  }
+  .mt10 {
+    margin-top: 10px;
+  }
+  .mb {
+    margin-bottom: 10px;
+  }
+  .none {
+    display: none;
+  }
+  .regist_header {
+    padding: 16px;
+    background: #fff;
+    border: 1px solid #e1e1e1;
+  }
+  .regist_header .wrap {
+    width: 1200px;
+  }
+  .regist_header .logo {
+    display: block;
+    float: left;
+    width: 54px;
+    height: 48px;
+  }
+  .regist_header_right {
+    float: right;
+    line-height: 18px;
+    font-family: "SimSun";
+    color: #999;
+  }
+  .regist_header_right .help_wrap {
+    position: relative;
+    z-index: 1010;
+    float: right;
+    padding: 0 6px;
+    margin-left: 25px;
+    _display: inline;
+  }
+  .regist_header_right .help_wrap a.hd_menu {
+    padding-right: 18px;
+    background:  no-repeat right -30px;
+    color: #333;
+  }
+  .regist_header_right .help_wrap a.hd_menu:hover {
+    color: #e60012;
+  }
+  .regist_header_right .help_wrap a.hd_menu .help_ico {
+    width: 16px;
+    height: 18px;
+    display: inline-block;
+    margin-right: 6px;
+    background: url(/static/img/regist.png) no-repeat -344px 0;
+    vertical-align: middle;
+  }
+  .regist_header_right .help_wrap .hd_menu_list {
+    display: none;
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    right: 0;
+    width: 98px;
+    padding-top: 21px;
+    border: 1px solid #ccc;
+  }
+  .regist_header_right .help_wrap {
+    background: #fff;
+  }
+  .regist_header_right .help_wrap .hd_menu_list {
+    display: none;
+  }
+  .regist_header_right .help_wrap_hover .hd_menu_list {
+    display: block;
+    position: absolute;
+    top: -4px;
+    right: 0;
+    width: 98px;
+    padding-top: 25px;
+    border: 1px solid #ccc;
+  }
+  .regist_header_right .help_wrap_hover .hd_menu_list ul {
+    background: #fff;
+  }
+  .regist_header_right .help_wrap_hover .hd_menu_list a {
+    height: 24px;
+    display: block;
+    padding-left: 25px;
+    border-top: 1px dotted #e4e4e4;
+    background: #fff;
+    line-height: 24px;
+  }
+  .regist_header_right .english_edition {
+    display: block;
+    float: right;
+    height: 16px;
+    padding-left: 8px;
+    border-left: 1px solid #ccc;
+  }
+  #simplefooter {
+    width: 980px;
+    margin: 20px auto 0;
+    text-align: center;
+  }
+  #simplefooter p {
+    margin-top: 10px;
+    color: #333;
+  }
+  #simplefooter a {
+    margin: 0 8px;
+    color: #333;
+  }
+  #simplefooter a:hover {
+    color: #c00;
+  }
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+    color: #ccc;
+  }
+  body {
+    background: #fcfcfc;
+  }
+  .login_wrap {
+    padding: 26px 0 0;
+    background: url(/static/img/regist_topshadow.png) repeat-x;
+  }
+  .mod_login_wrap {
+    position: relative;
+    _display: inline;
+    float: right;
+    width: 330px;
+    padding: 45px 35px 0 35px;
+    background-color: #fff;
+  }
+  .mod_login_wrap .regist_new {
+    float: right;
+    line-height: 30px;
+  }
+  .mod_login_wrap .login_form {
+    position: relative;
+    padding: 0 0 18px;
+  }
+  .mod_login_wrap .error_tips {
+    position: absolute;
+    top: 9px;
+    left: 35px;
+    width: 282px;
+    height: 30px;
+    overflow: hidden;
+    padding: 0 10px 0 36px;
+    border: 1px solid #e5debc;
+    border-radius: 2px;
+    background: #fff7d1 url(/static/img/login.png) no-repeat -324px -150px;
+    line-height: 30px;
+    color: #999;
+  }
+  .mod_login_wrap .form_item_wrap {
+    width: 330px;
+    margin: 0 auto;
+  }
+  .mod_login_wrap .form_item_wrap .form_item {
+    position: relative;
+    z-index: 100;
+    height: 24px;
+    margin-bottom: 10px;
+    padding: 14px 18px;
+    border: 1px solid #dedede;
+    background: #fff;
+    line-height: 24px;
+  }
+  .mod_login_wrap .form_item_wrap .form_item label {
+    display: inline-block;
+    width: 42px;
+    vertical-align: middle;
+    color: #666;
+  }
+  .mod_login_wrap .form_item_wrap .form_item .user_ico {
+    background: url(/static/img/login_new.png) no-repeat -50px 4px;
+  }
+  .mod_login_wrap .form_item_wrap .form_item .paswd_ico {
+    background: url(/static/img/login_new.png) no-repeat -150px 4px;
+  }
+  .mod_login_wrap .form_item_wrap .form_item .verify_ico {
+    background: url(/static/img/login_new.png) no-repeat -100px 4px;
+  }
+  .mod_login_wrap .form_item_wrap .form_item .ipt {
+    width: 230px;
+    height: 24px;
+    padding-left: 3px;
+    border: 0 none;
+    line-height: 24px;
+    vertical-align: middle;
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+  }
+  .mod_login_wrap .form_item_wrap .form_item .gay_text {
+    color: #ccc;
+  }
+  .mod_login_wrap .form_item_wrap .form_item a.forget_pswd:hover {
+    color: #e60012;
+  }
+  .mod_login_wrap h3 {
+    float: left;
+    font-size: 14px;
+    color: #666;
+    font-weight: bold;
+    line-height: 30px;
+  }
+  .mod_login_wrap .form_item_wrap .verify_code {
+    height: 52px;
+    margin-bottom: 10px;
+    padding: 0;
+    border: 0 none;
+  }
+  .mod_login_wrap .form_item_wrap .verify_code .form_item {
+    float: left;
+    margin-bottom: 0;
+    padding: 14px 33px 14px 18px;
+  }
+  .mod_login_wrap .form_item_wrap .verify_code .ipt {
+    width: 95px;
+  }
+  .mod_login_wrap .form_item_wrap a.verify_code_box {
+    position: relative;
+    display: block;
+    _display: inline;
+    float: right;
+    width: 123px;
+    height: 50px;
+    border: 1px solid #efefef;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  .mod_login_wrap .form_item_wrap a.verify_code_box img {
+    width: 123px;
+    height: 50px;
+  }
+  .mod_login_wrap .form_item_wrap a.verify_code_box .btn_change {
+    display: none;
+    width: 123px;
+    height: 50px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    filter: progid:DXImageTransform.Microsoft.gradient(
+        enabled="true",
+        startColorstr="#7F000000",
+        endColorstr="#7F000000"
+      );
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+    font-style: normal;
+    cursor: pointer;
+  }
+  .mod_login_wrap .form_item_wrap a.verify_code_box:hover .btn_change {
+    display: block;
+  }
+  .mod_login_wrap .verify_code .code_right {
+    display: none;
+    position: absolute;
+    top: 1px;
+    right: 0;
+    width: 30px;
+    height: 50px;
+    background: #fff url(/static/img/regist.png) no-repeat 0 -27px;
+  }
+  .mod_login_wrap .verify_code .code_wrong {
+    display: none;
+    position: absolute;
+    top: 2px;
+    right: 0;
+    width: 30px;
+    height: 48px;
+    background: #fff url(/static/img/regist.png) no-repeat 0 -80px;
+  }
+  .mod_login_wrap .verify_code .cur_error .code_wrong {
+    display: block;
+  }
+  .mod_login_wrap .verify_code .cur_right .code_right {
+    display: block;
+  }
+  .mod_login_wrap .form_item_wrap .auto_login {
+    position: relative;
+    margin: 10px 0;
+    line-height: 24px;
+    min-height: 24px;
+    _height: 24px;
+  }
+  .mod_login_wrap .form_item_wrap .auto_tips {
+    float: left;
+    margin-left: 7px;
+    _display: inline;
+    color: red;
+  }
+  .mod_login_wrap .form_item_wrap a.check_agreement {
+    float: left;
+    padding-left: 18px;
+    background: url(/static/img/login.png) no-repeat -347px -325px;
+    color: #999;
+  }
+  .mod_login_wrap .form_item_wrap a.forget_pswd {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #999;
+  }
+  .mod_login_wrap .form_item_wrap a.uncheck_agreement:hover {
+    background-position: -347px -295px;
+    color: #999;
+  }
+  .mod_login_wrap .form_item_wrap .login_btn {
+    width: 330px;
+    height: 52px;
+    border: 0 none;
+    border-radius: 3px;
+    background: #ff3c3c;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    text-shadow: 1px 1px 1px #ff7373;
+    font-family: "Microsoft YaHei";
+    line-height: 52px;
+  }
+  .mod_login_wrap .form_item_wrap .service_agreement {
+    display: none;
+  }
+  .mod_login_wrap .form_item_wrap .cur {
+    z-index: 101;
+    border: 1px solid #aaa;
+  }
+  .mod_login_wrap .form_item_wrap .cur_error {
+    z-index: 101;
+    border: 1px solid #ff4646;
+  }
+  .joint_landing_wrap {
+    position: relative;
+    z-index: 10;
+  }
+  .mod_login_wrap .joint_landing_wrap p {
+    padding: 15px 0;
+    color: #666;
+  }
+  .mod_login_wrap .joint_landing_wrap .account_list {
+    float: left;
+    width: 230px;
+  }
+  .mod_login_wrap .joint_landing_wrap .account_list li {
+    float: left;
+    margin: 0 20px 0 0;
+    _display: inline;
+  }
+  .mod_login_wrap .joint_landing_wrap .account_list a.iconfont {
+    display: inline-block;
+    width: 32px;
+    height: 35px;
+    font-size: 32px;
+    line-height: 35px;
+  }
+  .mod_login_wrap .joint_landing_wrap .qq {
+    color: #10a8ff;
+  }
+  .mod_login_wrap .joint_landing_wrap .jingdong {
+    position: relative;
+    top: 2px;
+    color: #c81825;
+  }
+  .mod_login_wrap .joint_landing_wrap .alipay {
+    color: #00b2ee;
+  }
+  .mod_login_wrap .joint_landing_wrap .weixin {
+    color: #0c0;
+  }
+  .mod_login_wrap .joint_landing_wrap .sina {
+    color: #dd2e37;
+  }
+  .mod_login_wrap .joint_landing_wrap .wangyi {
+    color: #c4282b;
+  }
+  .mod_login_wrap .joint_landing_wrap .baidu {
+    color: #2932e1;
+  }
+  .mod_login_wrap .joint_landing_wrap .mobile {
+    color: #2094d6;
+  }
+  .mod_login_wrap .joint_landing_wrap .kaixin {
+    color: #fdd000;
+  }
+  .mod_login_wrap .joint_landing_wrap .renren {
+    color: #005eac;
+  }
+  .mod_login_wrap .joint_landing_wrap .mogujie {
+    color: #e84478;
+  }
+  .mod_login_wrap .joint_landing_wrap .pingan {
+    color: #ff3204;
+  }
+  .mod_login_wrap .more_landing {
+    margin-top: 15px;
+  }
+  .mod_login_wrap .more_landing li {
+    float: left;
+    width: 82px;
+    margin: 0 0 10px 0;
+    _display: inline;
+    line-height: 16px;
+  }
+  .mod_login_wrap .more_landing a {
+    color: #999;
+    line-height: 16px;
+  }
+  .mod_login_wrap .more_landing a:hover span {
+    color: #999;
+    text-decoration: underline;
+  }
+  .mod_login_wrap .more_landing a i {
+    margin-right: 4px;
+  }
+  .mod_login_wrap .joint_landing_wrap .unfold {
+    float: right;
+    display: block;
+    line-height: 34px;
+    color: #999;
+  }
+  .mod_login_wrap .joint_landing_wrap .unfold i {
+    display: inline-block;
+    width: 20px;
+    height: 26px;
+    margin-top: 4px;
+    margin-left: 5px;
+    background: url(/static/img/login_new.png) no-repeat -200px 3px;
+    vertical-align: middle;
+  }
+  .mod_login_wrap .joint_landing_wrap .fold i {
+    background-position: -250px 3px;
+  }
+  .mod_left_banner {
+    margin-top: 45px;
+    width: 510px;
+    height: 315px;
+    float: left;
+  }
+  .mod_left_banner img {
+    width: 510px;
+    height: 315px;
+  }
+  .mod_landing_fail {
+    width: 350px;
+    height: 172px;
+    margin: 40px auto;
+    background: url(/static/img/landing_fail.jpg) no-repeat;
+  }
+  .mod_pop {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 10002;
+  }
+  .mod_pop .pop_bg {
+    display: block;
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    padding: 6px;
+    background: #000;
+    opacity: 0.2;
+    filter: Alpha(opacity=20);
+  }
+  .mod_pop .pop_con {
+    border: 1px solid #b4b4b4;
+    background: #fff;
+  }
+  .mod_pop .pop_close {
+    display: block;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 16px;
+    height: 16px;
+    background: url(/static/img/bg_sprite_png24.png) no-repeat -360px -50px;
+    _background: url(/static/img/bg_sprite.gif) no-repeat -360px -50px;
+    cursor: pointer;
+  }
+  .mod_pop h4 {
+    height: 18px;
+    margin: 15px 25px 13px;
+    font-size: 16px;
+    line-height: 18px;
+    font-family: "Microsoft YaHei";
+  }
+  .popup_win_mask {
+    display: none;
+    position: fixed;
+    _position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10001;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    filter: alpha(opacity=40);
+    opacity: 0.4;
+  }
+  .mod_pop .pop_title_bg {
+    display: block;
+    height: 8px;
+    margin: 0 8px;
+    background: url(/static/img/bg_repeat_x.jpg) repeat-x 0 -90px;
+  }
+  .mod_change_pw .btnWrap a {
+    background: url(/static/img/login.png) 0 0 no-repeat;
+  }
+  .mod_change_pw {
+    margin-left: -210px;
+    margin-top: -120px;
+  }
+  .mod_change_pw .pop_con {
+    width: 290px;
+    height: 179px;
+    padding: 64px 64px 0 64px;
+  }
+  .mod_change_pw .text {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 44px;
+  }
+  .mod_change_pw .btnWrap a {
+    float: left;
+    width: 140px;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    font-family: "microsoft yahei";
+    font-size: 16px;
+  }
+  .mod_change_pw .btnWrap a.btn1 {
+    background-position: 0 -345px;
+    margin-right: 10px;
+  }
+  .mod_change_pw .btnWrap a.btn2 {
+    background-position: -141px -345px;
+    color: #fff;
+  }
+  .mod_bindmb_point {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10002;
+    width: 626px;
+    height: 410px;
+    margin-left: -313px;
+    margin-top: -205px;
+    background: url(/static/img/bind_pop.png) no-repeat;
+  }
+  .mod_bindmb_point .close_btn {
+    position: absolute;
+    top: 18px;
+    right: 32px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+  .mod_bindmb_point .form_box {
+    padding: 222px 0 0 260px;
+  }
+  .mod_bindmb_point .form_box p {
+    margin-bottom: 10px;
+    color: #666;
+  }
+  .mod_bindmb_point .form_box label {
+    padding: 0 8px;
+    line-height: 30px;
+    vertical-align: middle;
+  }
+  .mod_bindmb_point .form_box .ipt {
+    height: 26px;
+    line-height: 26px;
+    border: 0 none;
+    vertical-align: middle;
+  }
+  .mod_bindmb_point .form_box .ipt_code {
+    width: 88px;
+  }
+  .mod_bindmb_point .form_box .code_btn {
+    display: inline-block;
+    width: 92px;
+    height: 30px;
+    margin-left: 8px;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    vertical-align: middle;
+  }
+  .mod_bindmb_point .form_box .error_tips_box {
+    color: red;
+    line-height: 14px;
+  }
+  .mod_bindmb_point .form_box .bind_btn {
+    display: block;
+    width: 250px;
+    height: 34px;
+    background: url(/static/img/point_btn.png) no-repeat;
+    line-height: 34px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    font-family: "Microsoft YaHei";
+    font-weight: bold;
+  }
+  .find_account_pop_wrap {
+    position: absolute;
+    padding: 6px;
+    filter: progid:DXImageTransform.Microsoft.gradient(
+        enabled="true",
+        startColorstr="#33000000",
+        endColorstr="#33000000"
+      );
+  }
+  :root .find_account_pop_wrap {
+    filter: none;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  .find_account_pop_wrap .find_account_pop {
+    position: relativee;
+    width: 560px;
+    padding: 0 10px 40px;
+    border: 1px solid #b4b4b4;
+    background: #fff;
+  }
+  .find_account_pop_wrap .close_btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    color: #9f9f9f;
+    font-family: "Microsoft YaHei";
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .find_account_pop_wrap .pop_tit {
+    height: 52px;
+    padding: 0 10px;
+    background: url(/static/img/login_repeat_line.png) repeat-x 0 bottom;
+    font-weight: bold;
+    color: #666;
+    font-size: 14px;
+    line-height: 44px;
+  }
+  .find_account_pop_wrap .pop_tip {
+    padding: 20px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #666;
+  }
+  .find_account_pop_wrap .find_item {
+    float: left;
+    width: 110px;
+    height: 140px;
+    margin: 0 10px;
+    padding: 20px 12px 0;
+    border: 4px solid #f0f0f0;
+    background: #fff;
+    color: #666;
+    line-height: 20px;
+  }
+  .find_account_pop_wrap .find_item .icon1 {
+    display: block;
+    width: 36px;
+    height: 30px;
+    margin: 0 auto 10px;
+    background: url(/static/img/login.png) no-repeat 0 -40px;
+  }
+  .find_account_pop_wrap .find_item .icon2 {
+    display: block;
+    width: 21px;
+    height: 33px;
+    margin: 0 auto 10px;
+    background: url(/static/img/login.png) no-repeat -50px -40px;
+  }
+  .find_account_pop_wrap .find_item .icon3 {
+    display: block;
+    width: 32px;
+    height: 29px;
+    margin: 0 auto 10px;
+    background: url(/static/img/login.png) no-repeat -100px -40px;
+  }
+  .find_account_pop_wrap .find_item a {
+    display: block;
+    width: 75px;
+    height: 25px;
+    margin: 10px auto 0;
+    background: #ff9500;
+    line-height: 25px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+  }
+  .find_account_pop_wrap .find_item .org_font {
+    color: #ff9500;
+    font-family: "Century Gothic";
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .find_account_pop_wrap .pop_content .clearfix {
+    padding: 0 0 0 40px;
+  }
+  .mod_login_switch .login_code,
+  .mod_login_switch .login_switch .static_pc {
+    display: block;
+  }
+  .mod_login_switch .login_pc,
+  .mod_login_switch .two_dimension_code {
+    display: none;
+  }
+  .past_due .login_code_pic .shade,
+  .past_due .login_code_pic .meg_error {
+    display: block;
+  }
+  .scan_success .login_code_title,
+  .scan_success .login_code_pic,
+  .scan_success .login_code_handle {
+    display: none;
+  }
+  .scan_success .login_code_success {
+    display: block;
+  }
+  .login_code {
+    display: none;
+  }
+  .login_code_title {
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 16px;
+    text-align: center;
+  }
+  .login_code_title a {
+    display: inline-block;
+    color: #ff3c3c;
+  }
+  .login_code_pic {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 20px auto 0;
+    border: 1px solid #dedede;
+  }
+  .login_code_pic .picture_code {
+    width: 180px;
+    height: 180px;
+  }
+  .login_code_pic .shade,
+  .login_code_pic .meg_error {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 180px;
+    text-align: center;
+  }
+  .login_code_pic .shade {
+    background-color: #fff;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+  }
+  .login_code_pic .meg_error h5 {
+    margin: 0;
+    padding: 58px 0 15px;
+    font-weight: normal;
+  }
+  .login_code_pic .meg_error .refresh_btn {
+    display: inline-block;
+    width: 110px;
+    height: 35px;
+    background-color: #ff3c3c;
+    border-radius: 4px;
+    color: #fff;
+    text-align: center;
+    line-height: 35px;
+  }
+  .login_code_handle {
+    padding: 20px 0 90px;
+    color: #666;
+    text-align: center;
+  }
+  .login_code_handle em {
+    display: inline-block;
+    padding: 0 10px;
+  }
+  .login_code_handle a {
+    display: inline-block;
+    color: #666;
+  }
+  .login_code_handle a:hover {
+    color: #f60;
+  }
+  .login_code_handle .use_help {
+    position: relative;
+  }
+  .login_code_handle .tips {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: -90px;
+    height: 30px;
+    padding: 0 10px;
+    line-height: 30px;
+    border: 1px solid #e5debc;
+    background: #fff7d1;
+    color: #999;
+    white-space: nowrap;
+  }
+  .login_code_handle .tips i {
+    display: block;
+    width: 9px;
+    height: 5px;
+    position: absolute;
+    top: -5px;
+    right: 22px;
+    background: url(/static/img/login_popup.png) no-repeat -342px -241px;
+  }
+  .login_code_success {
+    display: none;
+    padding-bottom: 65px;
+    color: #666;
+    text-align: center;
+  }
+  .login_code_success p {
+    padding-top: 20px;
+    line-height: 14px;
+  }
+  .login_code_success h5 {
+    margin: 0;
+    padding-top: 10px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 18px;
+  }
+  .login_switch {
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+  }
+  .login_switch em {
+    display: inline-block;
+    _display: none;
+    *display: none;
+    display: none\9;
+    position: absolute;
+    right: 18px;
+    bottom: 19px;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border: 43px solid transparent;
+    border-right-color: #fff;
+    transform: rotate(46deg);
+    -ms-transform: rotate(46deg);
+    -moz-transform: rotate(46deg);
+    -webkit-transform: rotate(46deg);
+    -o-transform: rotate(46deg);
+  }
+  .login_switch a {
+    display: block;
+    width: 62px;
+    height: 62px;
+    cursor: pointer;
+  }
+  .login_switch .two_dimension_code {
+    background: url("/static/img/codeSwich.png") no-repeat -88px 0;
+  }
+  .login_switch .two_dimension_code:hover {
+    background: url("/static/img/codeSwich.png") no-repeat -88px -88px;
+  }
+  .login_switch .static_pc {
+    display: none;
+    background: url("/static/img/codeSwich.png") no-repeat 0 0;
+  }
+  .login_switch .static_pc:hover {
+    background: url("/static/img/codeSwich.png") no-repeat 0 -88px;
+  }
