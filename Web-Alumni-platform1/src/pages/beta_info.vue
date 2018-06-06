@@ -313,7 +313,7 @@ export default {
 
 
 <style lang="less" scoped>
-@import "../style/bootstrap";
+//@import "../style/bootstrap";
 @import "../style/googlefontone";
 @import "../style/googlefontone2";
 @import "../style/resume";

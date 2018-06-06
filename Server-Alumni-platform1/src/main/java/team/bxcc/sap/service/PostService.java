@@ -17,9 +17,11 @@ public interface PostService {
     //发布帖子
     String PublishPost(Post post);
     //根据时间列出帖子
-    PageBean<Post> listPostByTime(int curPage);
+    PageBean<Post> listPostByreadType(int curPage,String readType);
     // 根据用户和时间列出帖子
     PageBean<Post> listPostByUserTime(int CurPage,String Uid);
 
-    //
+    //根据pid获取用户的帖子信息
+    Post getpost(String pid,String uid);
+    boolean ajaxClickLike(String pid,String uid);
 }

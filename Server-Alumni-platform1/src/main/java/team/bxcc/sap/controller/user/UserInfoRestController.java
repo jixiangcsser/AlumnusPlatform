@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import team.bxcc.sap.config.HttpStatus;
 import team.bxcc.sap.domain.mysql.UserInfo;
 import team.bxcc.sap.service.UserInfoService;
+import team.bxcc.sap.service.UserService;
 import team.bxcc.sap.util.annotation.Authorization;
 import team.bxcc.sap.util.annotation.RequestUserInfo;
 import team.bxcc.sap.util.httpresponse.HttpResponseObj;
@@ -27,7 +28,8 @@ public class UserInfoRestController {
 
     @Autowired
     private UserInfoService userInfoService;
-
+    @Autowired
+    private UserService userService;
     /**
      * 获取用户基本信息
      *
@@ -74,7 +76,8 @@ public class UserInfoRestController {
     @Authorization
     public HttpResponseObj update_userinfo(@RequestUserInfo UserInfo userinfo) {
         try {
-            if (userInfoService.updateUserInfo(userinfo)) {
+
+            if (userInfoService.updateUserInfo(userinfo)){
                 return new HttpResponseObj(HttpStatus.OK, "update userinfo success!");
             } else {
                 return new HttpResponseObj(HttpStatus.DATABASE_EXCEPTION, "update user failed!");
@@ -102,12 +105,13 @@ public class UserInfoRestController {
     @Authorization
     public HttpResponseObj create(@RequestUserInfo UserInfo userinfo) {
         try {
-            System.out.println("进入阿里");
-            if (userInfoService.createUserInfo(userinfo)) {
-                System.out.println("chulai");
+
+            System.out.println("出来吧"+userinfo.getId());
+            if (userInfoService.createUserInfo(userinfo)&&userService.updateHeadUrlFlag(userinfo.getId())) {
+
                 return new HttpResponseObj(HttpStatus.OK, "create userinfo success!");
             } else {
-                System.out.println("chulai111");
+
                 return new HttpResponseObj(HttpStatus.DATABASE_EXCEPTION, "create user failed!");
             }
 

@@ -19,9 +19,9 @@ public class AliTokenDao {
     }
 
     public AliToken getCacheValue() {
-        System.out.println("22");
+
         if (redisTemplate.opsForValue().get("ali_token_AccessKeyId") != null && redisTemplate.opsForValue().get("ali_token_AccessKeySecret") != null && redisTemplate.opsForValue().get("ali_token_SecurityToken") != null) {
-            System.out.println("23");
+
             return new AliToken(redisTemplate.opsForValue().get("ali_token_AccessKeyId"), redisTemplate.opsForValue().get("ali_token_AccessKeySecret"), redisTemplate.opsForValue().get("ali_token_SecurityToken"));
         }
         return null;

@@ -73,6 +73,11 @@ public class UserInfo implements Serializable {
      */
     private Timestamp date2;
 
+    /**
+     *
+     */
+
+
     public UserInfo() {
         this.id = null;
         this.name = null;
@@ -86,6 +91,7 @@ public class UserInfo implements Serializable {
         this.speciality = null;
         this.date1 = null;
         this.date2 = null;
+
     }
 
     public UserInfo(String id, String name, int sex, int nation, String home, int political, String workstation, String job, String undergraduate, String speciality, Timestamp date1, Timestamp date2) {
@@ -101,6 +107,7 @@ public class UserInfo implements Serializable {
         this.speciality = speciality;
         this.date1 = date1;
         this.date2 = date2;
+
     }
 
     public String getId() {

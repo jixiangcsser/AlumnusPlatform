@@ -14,6 +14,9 @@ const FindPdPage = r => require.ensure([], () => r(require('@/pages/findpassword
 const ForumPage = r => require.ensure([], () => r(require('@/pages/forum')))
 const PublishPage = r => require.ensure([], () => r(require('@/pages/publish')))
 const myPostPage = r => require.ensure([], () => r(require('@/pages/myPost')))
+const PostPage = r => require.ensure([], () => r(require('@/pages/post')))
+const Template = r => require.ensure([], () => r(require('@/pages/template')))
+const Message = r => require.ensure([], () => r(require('@/pages/message')))
 let router = new VueRouter({
     // mode: "hash", 在浏览器不支持的情况下会自动转为hash模式
     mode: "history",
@@ -74,12 +77,15 @@ let router = new VueRouter({
             name: 'ForumPage',
             component: ForumPage,
             meta: {
+                requiresAuth: true
+            
             }
         },{
             path: '/publish',
             name: 'PublishPage',
             component: PublishPage,
             meta: {
+                requiresAuth: true
             }
         }, 
         {
@@ -87,8 +93,33 @@ let router = new VueRouter({
             name: 'myPostPage',
             component: myPostPage,
             meta: {
+                requiresAuth: true
             }
         },{
+            path: '/Post',
+            name: 'PostPage',
+            component: PostPage,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/template',
+            name: 'Template',
+            component: Template,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/message',
+            name: 'Message',
+            component: Message,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
             path: '/*',
             name: 'ErrorPage',
             component: ErrorPage,

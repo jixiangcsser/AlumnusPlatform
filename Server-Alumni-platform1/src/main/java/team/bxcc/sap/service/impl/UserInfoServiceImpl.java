@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import team.bxcc.sap.dao.mysql.UserInfoDao;
 import team.bxcc.sap.domain.mysql.UserInfo;
 import team.bxcc.sap.service.UserInfoService;
+import team.bxcc.sap.service.UserService;
 
 /**
  * UserInfo 实现类
@@ -18,6 +19,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Autowired
     private UserInfoDao userInfoDao;
+
 
     @Override
     public boolean createUserInfo(UserInfo userInfo) {

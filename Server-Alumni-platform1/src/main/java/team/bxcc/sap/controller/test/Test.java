@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/tokenww")
 public class Test {
 
+    int i;
     @RequestMapping(method = RequestMethod.POST)
     public void run(){
         System.out.println("你是不是饿的慌");

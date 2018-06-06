@@ -83,6 +83,7 @@ const userModule = {
                 try {
                     var response = await axios.post("/api/token", item);
                     if (response.data.code == 200) {
+                        
                         cookie.set('access_token', response.data.msg, JSON.parse(atob(response.data.msg.split(".")[0])).timestamp);
                         rootState.access_token = response.data.msg;
                         on_result({
@@ -136,6 +137,7 @@ const userModule = {
             return new Promise(async (on_result, on_error) => {
                 try {
                     item.user_id = JSON.parse(atob(rootState.access_token.split(".")[0])).user_id;
+
                     var response = await axios({
                         url: "/api/userinfo",
                         method: 'post',
@@ -176,6 +178,7 @@ const userModule = {
                         url: "/api/userinfo",
                         method: 'put',
                         data: item,
+                        
                         headers: {
                             'content-type': 'application/json',
                             'authorization': rootState.access_token
@@ -316,7 +319,7 @@ const userModule = {
                         });
                     }
                 } catch (error) {
-                    console.log(error);
+                   // console.log(error);
 
                     
                     on_error({
@@ -337,8 +340,10 @@ const userModule = {
                         state.img_bs64_url = localStorage.getItem('user_icon');
                     } else {//signatureUrl中阿里的包里自带的，atob是将base64编码过得反编码处理，根据用户的id获取到临时的url
                         let url = rootState.ali_client.signatureUrl(JSON.parse(atob(rootState.access_token.split(".")[0])).user_id);
+                       
+                        console.log(url);
                         state.img_bs64_url = await convertimg2bs64(url);
-                        console.log("师傅啊");
+                        
                         console.log("测试一下"+state.img_bs64_url);
                         localStorage.setItem('user_icon', state.img_bs64_url);
                     }
@@ -347,6 +352,40 @@ const userModule = {
                     });
                 } catch (error) {
                     console.log(error);
+                    on_error({
+                        code: 999
+                    });
+                }
+            });
+        },
+        addHeadUrlToDB({
+            state,
+            commit,
+            item
+        }){
+            return new Promise(async (on_result, on_error) => {
+                try {
+                    
+                    var response = await axios({
+                        url: "/api/addHeadUrlToDB",
+                        method: 'post',
+                        data: item,
+                        headers: {
+                            'content-type': 'application/json',
+                            'authorization': rootState.access_token
+                        }
+                    });
+                    if (response.data.code == 200) {
+                        on_result({
+                            code: 200
+                        });
+                    } else {
+                        on_result({
+                            code: response.data.code
+                        });
+                    }
+                } catch (error) {
+                    console.error(error);
                     on_error({
                         code: 999
                     });

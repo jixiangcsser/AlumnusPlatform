@@ -29,13 +29,13 @@ public class AliTokenServiceImpl implements AliTokenService {
     public AliToken get_token() throws ClientException {
 
         if (aliTokenDao.getCacheValue() == null) {
-            System.out.println("准备进入");
+
             String endpoint = "sts.aliyuncs.com";
             String accessKeyId = "LTAIVz7TwaSO7otx";
             String accessKeySecret = "RzdMSu84VZqj1PQIRUItDoCaaWj6Iw";
             String roleArn = "acs:ram::1361416689521017:role/fengtao";
             String roleSessionName = "session-name";
-
+            // String timeout=3600*24*360000;
             // Init ACS Client
             DefaultProfile.addEndpoint("", "", "Sts", endpoint);
             IClientProfile profile = DefaultProfile.getProfile("", accessKeyId, accessKeySecret);
@@ -45,11 +45,11 @@ public class AliTokenServiceImpl implements AliTokenService {
             request.setRoleArn(roleArn);
             request.setRoleSessionName(roleSessionName);
             request.setDurationSeconds(3600L);
-            final AssumeRoleResponse response = client.getAcsResponse(request);
+            final AssumeRoleResponse response = client.getAcsResponse(request);//通过response获取到AccesskeyId,AccessKeySecret..
             /*设置aliToken*/
-            System.out.println("进入");
+
             aliTokenDao.setCacheValue(new AliToken(response.getCredentials().getAccessKeyId(), response.getCredentials().getAccessKeySecret(), response.getCredentials().getSecurityToken()));
-            System.out.println("获取");
+
             return new AliToken(response.getCredentials().getAccessKeyId(), response.getCredentials().getAccessKeySecret(), response.getCredentials().getSecurityToken());
 
         }

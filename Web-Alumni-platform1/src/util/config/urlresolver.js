@@ -18,6 +18,7 @@ router.beforeEach((to, from, next) => {
                 path: '/main'
             });
         }
+        
     }
     next();
 });

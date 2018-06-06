@@ -1,6 +1,7 @@
 package team.bxcc.sap.dao.mysql;
 
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 import team.bxcc.sap.domain.mysql.UserInfo;
 
 import java.sql.Timestamp;
@@ -12,6 +13,7 @@ import java.sql.Timestamp;
  * @date 2018/2/1.
  */
 @Mapper // 标志为 Mybatis 的 Mapper
+@Component
 public interface UserInfoDao {
 
     /**

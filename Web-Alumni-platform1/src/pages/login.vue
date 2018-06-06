@@ -65,17 +65,17 @@
                                 <ul class="account_list clearfix">
                                     <li>
                                         <a href="javascript:void(0);" @click="unSupportNow()">
-                                            <img src="/static/img/qq.png" class="iconfont qq" title="QQ" style="width:40px;height:35px;"></img>
+                                            <img src="/static/img/qq.png" class="iconfont qq" title="QQ" style="width:40px;height:35px;"> </img>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="javascript:void(0);" @click="unSupportNow()">
-                                            <img src="/static/img/weixin.png" class="iconfont weixin" title="weixin" style="width:40px;height:35px;"></img>
+                                            <img src="/static/img/weixin.png" class="iconfont weixin" title="weixin" style="width:40px;height:35px;"> </img>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="javascript:void(0);" @click="unSupportNow()">
-                                            <img src="/static/img/weibo.png" class="iconfont sina" title="sina" style="width:40px;height:35px;"></img>
+                                            <img src="/static/img/weibo.png" class="iconfont sina" title="sina" style="width:40px;height:35px;"> </img>
                                         </a>
                                     </li>
                                 </ul>

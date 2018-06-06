@@ -13,7 +13,12 @@ import team.bxcc.sap.service.PostService;
 import team.bxcc.sap.util.httpresponse.HttpResponseObj;
 
 import java.lang.reflect.Method;
-
+/**
+ * 帖子的详细内容
+ *
+ * @author JiXiang
+ * @date 2018/5/20.
+ */
 @RestController
 @Component
 @RequestMapping("/api/forumUser/toIndex")
@@ -22,11 +27,10 @@ public class ForumUserListController {
     PostService postService;
     @RequestMapping(method = RequestMethod.GET)
     public HttpResponseObj toIndex(PageBean p){
-        System.out.println("Uid="+p.getUid());
         try{
             PageBean<Post> pageBean = postService.listPostByUserTime(p.getCurPage(),p.getUid());
 
-            return new HttpResponseObj(HttpStatus.OK,"It is first page",pageBean);
+            return new HttpResponseObj(HttpStatus.OK,"success",pageBean);
 
         }catch (Exception e){
             return new HttpResponseObj(HttpStatus.UNEXPECTED, "Unexpected exception");

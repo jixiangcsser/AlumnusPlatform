@@ -14,7 +14,7 @@
                         <el-radio label="3">LGBT(放心,保密~~)</el-radio>
                     </el-radio-group>
                 </el-form-item>
-                <el-form-item label="头像">
+                <el-form-item label="头像" prop="img">
                     <el-upload class="upload-demo" ref="upload" action="" :auto-upload="false" :show-file-list="false" :on-change="onChange"
                         :limit="1">
                         <img :src="formData.img" class="avatar">
@@ -22,7 +22,7 @@
                         <div slot="tip" class="el-upload__tip" style="color:#909399;">只能上传jpg/png/gif文件，且不超过100KB</div>
                     </el-upload>
                 </el-form-item>
-                <el-form-item v-show="false" label="头像2">
+                <el-form-item v-show="false" label="头像2" prop="img">
                     <el-upload class="upload-demo" ref="temp_upload" action="" :auto-upload="false" :show-file-list="false" :limit="1" :on-error="tempUploadError">
                     </el-upload>
                 </el-form-item>
@@ -112,6 +112,7 @@ export default {
           { required: true, validator: this.validateName, trigger: "blur" }
         ],
         sex: [{ required: true, message: "性别别忘了。。", trigger: "change" }],
+        img: [{ required: true,validator:this.validateImg, trigger: "blur" }],
         nation: [
           { required: true, message: "民族是必选项", trigger: "change" }
         ],
@@ -192,6 +193,14 @@ export default {
         callback();
       } else {
         callback(new Error("请将输入控制在30个字符以内!"));
+      }
+    },
+    validateImg(rule,value,callback){
+      if (value == "/static/img/default.jpg") {
+        
+        callback(new Error("请上传您的专属头像!"));
+      } else {
+        callback();
       }
     },
     validateWorker(rule, value, callback) {
@@ -275,14 +284,15 @@ export default {
         } else {
           this.$refs[formName].validate(async valid => {
             if (valid) {
-              let formjson = this.newFormJson();
-              formjson.img = this.getValidImgUrl(
-                this.$refs.temp_upload.uploadFiles[0]
-              );
-              //如果头像更换了就更新图像至oss
+              
+              
+              //如果头像更换了就更新图像至oss，这时就抓换成base64字符串比较
               if (!(this.formData["img"] == this.backUpformData["img"])) {
                 await this.tmp_upload_http();
               }
+              let formjson = this.newFormJson();
+              var user_id = JSON.parse(atob(this.access_token.split(".")[0])).user_id;
+              formjson.img =this.ali_client.signatureUrl(user_id);
               try {
                 var res = await this.$store.dispatch(
                   "userModule/UpdatePfoController",
@@ -362,11 +372,10 @@ export default {
           center: true
         });
         this.$refs[formName].validate(async valid => {
+          console.log("啥情况？");
           if (valid) {
+            console.log("没进来");
             let formjson = this.newFormJson();
-            formjson.img = this.getValidImgUrl(
-              this.$refs.temp_upload.uploadFiles[0]
-            );
             try {
               var res = await this.$store.dispatch(
                 "userModule/SubmitPfoController",
@@ -379,6 +388,7 @@ export default {
                 message: "服务器异常或者您的网络异常!"
               });
             }
+        
             if (res.code == 200) {
               await this.tmp_upload_http();
               this.$message({
@@ -388,6 +398,9 @@ export default {
               this.$store.commit("userModule/setuserinfocontroller", {
                 obj: this.newFormJson()
               });
+              
+              
+               
               this.resetModify();
               this.$store.commit("userModule/changeIsNewUser", false);
             }
@@ -460,6 +473,7 @@ export default {
       "userModule/GetUserInfoController",
       true
     );
+    console.log(res);
     this.resetModify();
   }
 };

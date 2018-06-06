@@ -19,13 +19,13 @@ const actions = {
                 console.log(response.data.code)
                 if (response.data.code == 200) {
                     var client = new OSS.Wrapper({
-                        accessKeyId: response.data.obj.accessKeyId,
+                        accessKeyId: response.data.obj.accessKeyId,//这些keyId等都必须从后台中获取防止被
                         accessKeySecret: response.data.obj.accessKeySecret,
                         stsToken: response.data.obj.securityToken,
                         bucket: item,
                         region: 'oss-cn-beijing'
                     });
-                    console.log("ssssss")
+                    
                     state.ali_client = client;
                     on_result({
                         code: 200

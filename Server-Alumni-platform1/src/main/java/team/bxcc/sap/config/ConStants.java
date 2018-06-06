@@ -81,4 +81,13 @@ public class ConStants {
      * http://sse-ustc.oss-cn-beijing.aliyuncs.com/verify
      */
     public static final String ACTIVED_REDIRECT_URL = "http://localhost:8085/verify";
+
+    /**
+     * operation的类型回复了帖子
+     */
+    public static final String OPERATION_REPLY="回复了您的帖子";
+    /**
+     * operation的类型赞了帖子
+     */
+    public static final String OPERATION_CLICK_LIKE="赞了您的帖子";
 }

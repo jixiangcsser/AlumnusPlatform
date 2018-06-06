@@ -2,10 +2,12 @@ package team.bxcc.sap.dao.mysql;
 
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import team.bxcc.sap.domain.mysql.User;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * 用户 DAO 接口类
@@ -58,4 +60,33 @@ public interface UserDao {
      */
     @Delete("DELETE FROM user WHERE user_name =#{user_name} AND password = #{password}")
     boolean deleteUser(@Param("user_name") String user_name, @Param("password") String password);
+
+    /**
+     * 标志用户的头像已经上传
+     * @param id
+     */
+    @Update("UPDATE user SET headUrlFlag=1 WHERE id =#{Uid}")
+    boolean updateHeadUrl(@Param("Uid") String id );
+
+    /**
+     * 查看近期活跃用户的信息
+     * @param count
+     * @return
+     */
+    @Select("select id,user_name,headUrlFlag from user,post where user.id=post.uid group by uid order by count(*) desc limit #{count}")
+    List<User> getHotUsers(@Param("count") int count);
+
+    /**
+     * 获取近期加入的用户
+     * @param count
+     * @return
+     */
+    @Select("select user_name,headUrlFlag,id from user order by timestamp desc limit #{count}")
+    List<User> getRecentUsers(@Param("count") int count);
+
+    /**
+     * 根据用户id获取用户名
+     */
+    @Select("select user_name from user where id=#{Id}")
+    String getNamebyId(@Param("Id") String id);
 }

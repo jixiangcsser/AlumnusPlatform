@@ -10,7 +10,7 @@
 					
 						<li v-for= "post in posts">
 							<span class="glyphicon glyphicon-file"></span>&nbsp;
-							<a href="toPost.do?pid=${post.pid}">{{post.title}}</a>
+							<a href="javascript:void(0)" @click="getPostContent(post.pid)">{{post.title}}</a>
 							<span class="user-post-time">发布于 {{post.publishTime}}</span>
 						</li>
 					
@@ -29,18 +29,14 @@
             </div>
 		</div>
 
-		<div class="m-right">
-			<div class="user-follow">
-				<div class="user-follow">关注了<span class="user-count">${user.followCount}</span>人</div>
-				<div class="user-follower">关注者<span class="user-count">${user.followerCount}</span>人</div>
-			</div>
+		<!--div class="m-right">
 			<div class="user-attr">
-				<span class="user-like-count">获赞：${user.likeCount}</span>
-				<span class="user-post-count">发帖：${user.postCount}</span>
+				<span class="user-like-count">获赞：{{user.likeCount}}</span>
+				<span class="user-post-count">发帖：{{user.postCount}}</span>
 
 			</div>
 			<div class="user-scan-count">个人主页被浏览${user.scanCount}次</div>
-		</div>
+		</div-->
 
 	</div><!-- 主体结束 -->
 					
@@ -58,8 +54,8 @@ import convertimg2bs64 from '../util/global/imgresolver'
 export default {
   data() {
     return {
-		startPage: 1,
-       
+		    startPage: 1,
+        user:'',
 		
     };
   },
@@ -69,7 +65,8 @@ export default {
       //向后台获取阿里云文件服务器操作权限
         await this.$store.dispatch("GetAliClient", "sse-ustc-usericon");
         await this.$store.dispatch("userModule/GetUserIcon");
-		this.getPageList(1);//这个必须放到异步中！不要放到外面
+		    this.getPageList(1);
+
     } catch (error) {
       console.error("GetUserInfoController失败!");
     }
@@ -103,9 +100,14 @@ export default {
 	},
 	getPageList(val){
         this.$store.dispatch("forumUserModule/toIndex", {
-                        curPage:val
-            });
-	},
+           curPage:val
+        });
+  },
+  getPostContent(val){//点击进入帖子详细信息的方法！
+		//建一个本地变量，可以在点击进入后获取用户的id.并且刷新了也不消失。比用参数在地址中传递要好
+		window.localStorage.setItem("postPid",val);
+		this.$router.push("Post")
+	}
 		
  }
 

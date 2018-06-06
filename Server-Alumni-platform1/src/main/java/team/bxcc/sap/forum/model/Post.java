@@ -2,7 +2,14 @@ package team.bxcc.sap.forum.model;
 
 import team.bxcc.sap.domain.mysql.User;
 
-public class Post {
+import java.io.Serializable;
+
+/**
+ * 用户帖子的详细信息 model 类
+ * @author JiXiang
+ * @date 2018/5/10.
+ */
+public class Post implements Serializable {
     private String pid;
     private String title;
     private String content;
@@ -12,14 +19,17 @@ public class Post {
     private Integer likeCount;//点赞的个数
     private Integer scanCount;//浏览的个数
     private String imgUrl;
+    private String liked;
 
-    public String getImgUrl() {
-        return imgUrl;
+
+
+    public Post(){
+
+    }
+    public Post(String post_id){
+        this.pid=post_id;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
 
     //外键用户的id
     private User user;
@@ -103,7 +113,20 @@ public class Post {
     public void setUid(String uid) {
         this.uid = uid;
     }
+    public String getImgUrl() {
+        return imgUrl;
+    }
 
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+    public String getLiked() {
+        return liked;
+    }
+
+    public void setLiked(String liked) {
+        this.liked = liked;
+    }
     @Override
     public String toString() {
         return "Post{" +
@@ -116,6 +139,7 @@ public class Post {
                 ", likeCount=" + likeCount +
                 ", scanCount=" + scanCount +
                 ", user=" + user+", img_url=" + imgUrl+
+                ", liked="+liked+
                 " }'";
     }
 }

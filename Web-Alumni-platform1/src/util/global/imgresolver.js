@@ -16,6 +16,7 @@ const convertimg2bs64 = async function (url) {
             reader.readAsDataURL(blob);
         });
     } catch (e) {
+        console.log("出个错呀")
         return "/static/img/default.jpg";
     }
 }

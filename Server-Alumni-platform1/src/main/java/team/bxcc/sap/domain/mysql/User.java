@@ -12,6 +12,10 @@ import java.sql.Timestamp;
 public class User implements Serializable {
 
     private static final long serialVersionUID = -1L;
+    public User(){}
+    public User(String user_id) {
+        this.id=user_id;
+    }
 
     /**
      * 用户编号
@@ -47,6 +51,22 @@ public class User implements Serializable {
      * 激活标志位 ‘0’未激活  ‘1’激活
      */
     private String actived;
+    /**
+     * 设置headUrlflag,头像的标志。
+     */
+    private String headUrlFlag;
+
+    public String getHeadUrlFlag() {
+        return headUrlFlag;
+    }
+
+    public void setHeadUrlFlag(String headUrlFlag) {
+        this.headUrlFlag = headUrlFlag;
+    }
+
+
+
+
 
     public String getActived() {
         return this.actived;

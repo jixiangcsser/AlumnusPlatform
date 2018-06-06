@@ -59,8 +59,9 @@ public class TokenServiceImpl implements TokenService {
         obj.put("user", user_name);
         obj.put("user_id", user_id);
         obj.put("uuid", uuid.toString().replace("-", ""));
-        // 过期时间为1个小时
+        // 过期时间为2个小时
         obj.put("timestamp", new Date().getTime() + ConStants.TOKEN_EXPIRES_HOUR);
+        //obj.put("timestamp", new Date().getTime() + 10000);
         //将json数据转换byte类型然后使用base64编码转换成字符串。这里是为了使用加盐！！！所以把json转换成字符串
         String b64obj = new String(Base64.getEncoder().encode(obj.toString().getBytes()));
         // 加盐

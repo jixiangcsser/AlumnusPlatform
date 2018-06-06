@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -74,4 +75,22 @@ public class UserServiceImpl implements UserService {
     public boolean deleteUser(String user_name, String password) {
         return userDao.deleteUser(user_name, sha1Password(password));
     }
+
+    @Override
+    public boolean updateHeadUrlFlag(String user_id) {
+        return userDao.updateHeadUrl(user_id);
+    }
+
+    @Override
+    public List<User> getHotUsers(int count) {
+
+        return userDao.getHotUsers(count);
+    }
+
+    @Override
+    public List<User> getRecentUsers(int count) {
+        return userDao.getRecentUsers(count);
+    }
+
+
 }

@@ -2,9 +2,15 @@ package team.bxcc.sap.forum.model;
 
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.List;
+/**
+ * forum.vue页面中帖子获取的
+ * @author Jixiang
+ * @date 2018/5/10.
+ */
 @Component
-public class PageBean<T>{
+public class PageBean<T> implements Serializable {
     private int allPage;
 
 

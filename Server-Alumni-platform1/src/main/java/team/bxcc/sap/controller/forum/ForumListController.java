@@ -13,19 +13,25 @@ import team.bxcc.sap.service.PostService;
 import team.bxcc.sap.util.httpresponse.HttpResponseObj;
 
 import javax.servlet.http.HttpServletRequest;
-
+/**
+ * forum.vue页面的获取控制
+ *
+ * @author JiXiang
+ * @date 2018/5/30.
+ */
 @RestController
 @Component
 @RequestMapping("/api/forum/toIndex")
 public class ForumListController {
     @Autowired
     PostService postService;
+
     @RequestMapping(method = RequestMethod.GET)
-    public HttpResponseObj toIndex(PageBean p){
-        System.out.println("Uid="+p.getUid());
+    public HttpResponseObj toIndex(PageBean p,String readType){
         try{
-            PageBean<Post> pageBean = postService.listPostByTime(p.getCurPage());
-            System.out.println(pageBean);
+
+            PageBean<Post> pageBean = postService.listPostByreadType(p.getCurPage(),readType);
+
             return new HttpResponseObj(HttpStatus.OK,"It is first page",pageBean);
 
         }catch (Exception e){
@@ -33,4 +39,5 @@ public class ForumListController {
         }
 
     }
+
 }

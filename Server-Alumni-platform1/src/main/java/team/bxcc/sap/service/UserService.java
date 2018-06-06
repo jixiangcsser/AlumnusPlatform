@@ -2,6 +2,8 @@ package team.bxcc.sap.service;
 
 import team.bxcc.sap.domain.mysql.User;
 
+import java.util.List;
+
 /**
  * 用户查询逻辑接口类
  *
@@ -43,4 +45,20 @@ public interface UserService {
      * 删除用户
      */
     boolean deleteUser(String user_name, String password);
+
+    /**
+     * 修改用户的HeadUrl
+     *
+     */
+    boolean updateHeadUrlFlag(String user_id);
+
+    /**
+     * 获取活跃用户
+     */
+    List<User> getHotUsers(int count);
+
+    /**
+     * 获取最近加入用户
+     */
+    List<User> getRecentUsers(int count);
 }
