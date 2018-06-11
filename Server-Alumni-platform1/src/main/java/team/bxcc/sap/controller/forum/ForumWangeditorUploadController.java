@@ -4,11 +4,13 @@ import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.Bucket;
 import com.aliyun.oss.model.GeneratePresignedUrlRequest;
 import com.aliyun.oss.model.PutObjectResult;
+import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import team.bxcc.sap.config.HttpStatus;
@@ -22,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.*;
 /**
  * wangEditor富文本编辑器上传图片
@@ -31,12 +34,12 @@ import java.util.*;
  */
 @RestController
 @Component
-@RequestMapping("/wangEditor/upload")
+@RequestMapping("/api/wangEditor/upload")
 public class ForumWangeditorUploadController {
 
     @RequestMapping(method = RequestMethod.POST)
     public Map<String,String> uploadImgToOSS(MultipartFile file) {
-        System.out.println("upload..............");
+        System.out.println("load..........");
         Map<String, String> map = new HashMap<String, String>();
         String endpoint = "oss-cn-beijing.aliyuncs.com";
         String accessKeyId = "LTAIVz7TwaSO7otx";
@@ -52,7 +55,9 @@ public class ForumWangeditorUploadController {
             InputStream inputStream = file.getInputStream();
             ossUrl = dir + realName;
             //将内容上传到服务器。
+
             client.putObject("sse-ustc-wangeditor", ossUrl, inputStream);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,8 +68,8 @@ public class ForumWangeditorUploadController {
         String url = client.generatePresignedUrl("sse-ustc-wangeditor", ossUrl, expiration).toString();
         //返回是map格式
         map.put("data", url);
+
         return map;
 
     }
-
 }

@@ -39,7 +39,7 @@ public class UserRestController {
     private HttpServletRequest requests;
 
     /**
-     * 获取用户是否存在
+     * 获取用户是否存在,并且是否被激活！
      *
      * @param username 用户账户 {'user_name': 'xxx'}
      * @return HttpResponseObj 用户是否存在
@@ -53,7 +53,12 @@ public class UserRestController {
 
             if (username.matches(ConStants.MATCH_REGULAR_EXP_ACCOUNT)) {
                 if (userService.getUser(username)) {
-                    return new HttpResponseObj(HttpStatus.OK, "SUCCESS!");
+                    if(userService.IsActiveUser(username)){
+                        return new HttpResponseObj(HttpStatus.OK, "SUCCESS!");
+                    }
+                    else {
+                        return new HttpResponseObj(HttpStatus.NOT_ACTIVED,"not actived");
+                    }
                 }
                 return new HttpResponseObj(HttpStatus.USERNOTEXIST, "user not exist!");
             }
@@ -76,17 +81,19 @@ public class UserRestController {
      */
     @RequestMapping(method = RequestMethod.POST)
     public HttpResponseObj create(@RequestBody User user) {
+        String UserId;
         try {
-            System.out.println("get_user");
             if (user.getUser_name().matches(ConStants.MATCH_REGULAR_EXP_ACCOUNT)
                     && (user.getPassword().matches(ConStants.MATCH_WEAK1_REGULAR_EXP_PASSWORD) ||
                     user.getPassword().matches(ConStants.MATCH_WEAK2_REGULAR_EXP_PASSWORD) ||
                     user.getPassword().matches(ConStants.MATCH_WEAK3_REGULAR_EXP_PASSWORD) ||
                     user.getPassword().matches(ConStants.MATCH_MID_REGULAR_EXP_PASSWORD) ||
                     user.getPassword().matches(ConStants.MATCH_STRONG_REGULAR_EXP_PASSWORD)) && user.getPhone().matches(ConStants.MATCH_REGULAR_EXP_PHONE)) {
-                if (userService.createUser(user.getUser_name(), user.getPassword(), user.getPhone(), user.getEmail())) {
+                    UserId=userService.createUser(user.getUser_name(), user.getPassword(), user.getPhone(), user.getEmail());
+                if (UserId!="false") {
                     //异步发送邮件
-                    emailService.sendActivedEmail(user.getUser_name(), user.getEmail());
+                    System.out.println("异步发送邮件");
+                    emailService.sendActivedEmail(user.getUser_name(), user.getEmail(),UserId);
                     return new HttpResponseObj(HttpStatus.OK, "create user success!");
                 } else {
                     return new HttpResponseObj(HttpStatus.DATABASE_EXCEPTION, "create user failed!");

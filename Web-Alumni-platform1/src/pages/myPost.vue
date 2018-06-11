@@ -76,7 +76,6 @@ export default {
   computed: {
 	//总共的帖子的个数
 	totalPosts:function(){
-		console.log(this.$store.getters["forumUserModule/pageBean"].allPage+"总页数");
 		return this.$store.getters["forumUserModule/pageBean"].allPage*8;
 	},
 	//当前的页数
@@ -84,7 +83,6 @@ export default {
 		return this.$store.getters["forumUserModule/pageBean"].curPage;
     },
     posts: function() { //获取每页的所有帖子信息，并将楼主的照片加上去
-      console.log(this.$store.getters["forumUserModule/pageBean"].list);
       return this.$store.getters["forumUserModule/pageBean"].list;
 	},
   },

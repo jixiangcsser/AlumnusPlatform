@@ -29,7 +29,6 @@ public class CheckCodeEmailController {
     @RequestMapping(method = RequestMethod.GET)
     public HttpResponseObj verifyCode(@RequestParam String user_name, @RequestParam String code) {
         try {
-            System.out.println("verifyCode！！");
             if (emailService.verifyCodeEmail(user_name, code)) {
                 User user = userService.getUserInfo(user_name);
                 return new HttpResponseObj(HttpStatus.OK, tokenService.generate_AccessToken("JWT", "HS256", user.getUser_name(), user.getId()));
@@ -44,7 +43,6 @@ public class CheckCodeEmailController {
     @RequestMapping(method = RequestMethod.POST)
     public HttpResponseObj sendEmail(@RequestBody AccountModel user) {
         try {
-            System.out.println("发邮件！");
             emailService.sendCodeEmail(user.getUser_name());
         } catch (NullPointerException ignored) {
         } catch (Exception ignored) {

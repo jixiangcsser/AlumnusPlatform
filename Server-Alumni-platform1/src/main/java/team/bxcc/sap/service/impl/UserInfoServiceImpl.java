@@ -51,8 +51,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public UserInfo getUserInfo(String id) {
-        System.out.println("dao id="+id);
-        System.out.println(userInfoDao.findUserInfo(id));
         return userInfoDao.findUserInfo(id);
     }
 

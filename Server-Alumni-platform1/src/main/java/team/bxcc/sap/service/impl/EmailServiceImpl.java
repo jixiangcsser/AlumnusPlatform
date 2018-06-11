@@ -58,9 +58,10 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     @Async
-    public void sendActivedEmail(String user_name, String email) {
+    public void sendActivedEmail(String user_name, String email,String UserId) {
+
         this.send("亲爱的用户" + user_name + "，请猛戳下面激活您的账户 <a href='" + ConStants.ACTIVED_EMAIL_URL + "?user_name=" + user_name + "'>点此激活</a><br/>" +
-                "如果点击后无效或者无法访问，请手动复制链接进行访问 " + ConStants.ACTIVED_EMAIL_URL + "?user_name=" + user_name
+                "如果点击后无效或者无法访问，请手动复制链接进行访问 " + ConStants.ACTIVED_EMAIL_URL + "?user_Id=" + UserId
                 + "<br/>软院校友平台期待你的加入！", email, "软院校友平台账户激活");
     }
 

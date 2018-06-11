@@ -438,10 +438,16 @@ export default {
             this.ipt_li.clearfix = true;
             this.ipt_li.ishort_li = true;
             this.change_ipt_li(false, false, false);
-          } else {
+          } else if(res.code == 404){
             this.y_regist_tips.y_regist_tips_red = true;
             this.y_regist_tips.y_regist_tips_black = false;
             this.y_tips_words = "账户名不存在!";
+            this.change_ipt_li(true, true, true);
+          }
+          else if(res.code == 405){
+            this.y_regist_tips.y_regist_tips_red = true;
+            this.y_regist_tips.y_regist_tips_black = false;
+            this.y_tips_words = "账户名未激活!";
             this.change_ipt_li(true, true, true);
             return;
           }

@@ -78,7 +78,7 @@ const forumModule = {
             commit,
             rootState
         }, item) {
-            console.log(item.curPage);
+            
             return new Promise(async (on_result, on_error) => {
                 try {
                     var response = await axios({
@@ -128,7 +128,7 @@ const forumModule = {
                             'content-type': 'application/json', //我们把数据传输成json数据，直接设置就可以
                         }
                     });
-                    console.log("what happen")
+                    
                     var response1=await axios({
                         url: "/api/forum/reply",
                         method: 'get',
@@ -204,10 +204,6 @@ const forumModule = {
         }, item) {
             return new Promise(async (on_result, on_error) => {
                 try {
-                    console.log("传图片到后台")
-                    console.log(item.data);
-                    
-                   
                     var response = await axios({
                         url: "/wangEditor/upload",
                         method: 'post',
@@ -241,7 +237,7 @@ const forumModule = {
             commit,
             rootState
         }, item) {
-            console.log("dogdog")
+            
             return new Promise(async (on_result, on_error) => {
                 try {
                     var response = await axios({
@@ -278,7 +274,6 @@ const forumModule = {
             state,
             commit
         }, item) {
-            console.log("dogdog")
             return new Promise(async (on_result, on_error) => {
                 try {
                     var response = await axios({
@@ -291,8 +286,6 @@ const forumModule = {
                             'content-type': 'application/json', //我们把数据传输成json数据，直接设置就可以
                         }
                     });
-                    console.log("反回的数据");
-                    console.log(response.data);
                     state.RecentUsersList=response.data.obj;
                     if (response.data.code == 200) {//成功之后，刷新页面
                         //rootState.access_token = response.data.msg
@@ -317,8 +310,6 @@ const forumModule = {
             rootState
         }, item) {
             item.uid = JSON.parse(atob(rootState.access_token.split(".")[0])).user_id;
-            console.log("aaaaaaaaaa")
-            console.log(item.uid)
             return new Promise(async (on_result, on_error) => {
                 try {
                     var response = await axios({
@@ -333,14 +324,7 @@ const forumModule = {
                     });
                    
                     if (response.data.code == 200 ) {
-                        state.MessageList=response.data.obj;
-                        
-                       /* for(var key in response.data.obj){
-                            console.log(key);
-                            console.log(response.data.obj[key])
-                        }*/
-                            
-                       
+                        state.MessageList=response.data.obj; 
                         on_result({
                             code: 200
                         });
@@ -362,8 +346,7 @@ const forumModule = {
             rootState
         }, item) {
             item.uid = JSON.parse(atob(rootState.access_token.split(".")[0])).user_id;
-          
-          
+
             return new Promise(async (on_result, on_error) => {
                 try {
                     var response = await axios({
@@ -377,7 +360,6 @@ const forumModule = {
                             'content-type': 'application/json', //我们把数据传输成json数据，直接设置就可以
                         }
                     });
-                    console.log("wwwwwwwwwwww");
                     if (response.data.code == 200 ) {    
                         on_result({
                             code: 200

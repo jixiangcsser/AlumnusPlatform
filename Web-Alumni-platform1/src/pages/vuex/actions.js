@@ -16,13 +16,14 @@ const actions = {
                         'authorization': state.access_token
                     }
                 });
-                console.log(response.data.code)
+            
                 if (response.data.code == 200) {
                     var client = new OSS.Wrapper({
                         accessKeyId: response.data.obj.accessKeyId,//这些keyId等都必须从后台中获取防止被
                         accessKeySecret: response.data.obj.accessKeySecret,
                         stsToken: response.data.obj.securityToken,
                         bucket: item,
+                        secure: true,
                         region: 'oss-cn-beijing'
                     });
                     

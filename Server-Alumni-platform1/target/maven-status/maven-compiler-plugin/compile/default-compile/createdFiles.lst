@@ -26,6 +26,7 @@ team/bxcc/sap/controller/test/Test.class
 team/bxcc/sap/forum/model/Comment.class
 team/bxcc/sap/controller/test/JobUtilsTest.class
 team/bxcc/sap/dao/mysql/ReplyDao.class
+team/bxcc/sap/config/MultipartConfig.class
 team/bxcc/sap/service/impl/MessageServiceImpl.class
 team/bxcc/sap/config/ConStants.class
 team/bxcc/sap/dao/mysql/MessageDao.class

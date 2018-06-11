@@ -80,7 +80,6 @@ public class ForumIndexController {
      */
     @RequestMapping(value = "/ajaxClickLike")
     public HttpResponseObj ajaxClickLike(String pid, String uid){
-        System.out.println("没进来吗？");
         try {
             if(postService.ajaxClickLike(pid,uid)){
 

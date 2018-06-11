@@ -361,6 +361,10 @@ export default {
           }
         );
         localStorage.setItem("user_icon", this.formData.img);
+        localStorage.setItem(
+          "user_icon_id",
+          JSON.parse(atob(this.access_token.split(".")[0])).user_id
+        );
       }
       this.serviceCloseFullscreen(loadingInstance);
     },
@@ -372,9 +376,9 @@ export default {
           center: true
         });
         this.$refs[formName].validate(async valid => {
-          console.log("啥情况？");
+          
           if (valid) {
-            console.log("没进来");
+            
             let formjson = this.newFormJson();
             try {
               var res = await this.$store.dispatch(
@@ -398,9 +402,6 @@ export default {
               this.$store.commit("userModule/setuserinfocontroller", {
                 obj: this.newFormJson()
               });
-              
-              
-               
               this.resetModify();
               this.$store.commit("userModule/changeIsNewUser", false);
             }
@@ -422,8 +423,10 @@ export default {
     },
     resetModify() {
       this.resetForm("formData");
+      
       for (var prop in this.backUpformData) {
         if (this.formData.hasOwnProperty(prop)) {
+         
           this.formData[prop] = this.backUpformData[prop];
         }
       }
@@ -473,7 +476,6 @@ export default {
       "userModule/GetUserInfoController",
       true
     );
-    console.log(res);
     this.resetModify();
   }
 };

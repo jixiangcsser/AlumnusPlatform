@@ -9,7 +9,7 @@ public interface EmailService {
     /**
      * 发送激活邮件
      */
-    void sendActivedEmail(String user_name, String email);
+    void sendActivedEmail(String user_name, String email,String UserId);
 
     /**
      * 发送忘记密码验证码邮件

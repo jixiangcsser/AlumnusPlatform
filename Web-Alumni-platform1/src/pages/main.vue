@@ -8,7 +8,7 @@
                 <el-submenu index="2">
                     <template slot="title">
                         <i class="el-icon-document"></i>论文与简历
-                        <sup class="el-badge__content is-fixed" style="position:relative;border:none;">new</sup>
+                        
                         </template>
                     <el-menu-item index="paper">
                         <i class="fa fa-handshake-o fa-fw"></i>&nbsp; 论文指导</el-menu-item>
@@ -20,22 +20,25 @@
                 <el-submenu index="3">
                     <template slot="title">
                         <i class="el-icon-star-on"></i>信息
+                        <sup v-show="isNewUser" class="el-badge__content is-fixed" style="position:relative;border:none;">new</sup>
                     </template>
                     <el-menu-item index="infobroadcast">
                         <i class="fa fa-toggle-right fa-fw"></i>&nbsp; 信息展播
                     </el-menu-item>
                     <el-menu-item index="forum">
-                        <i class="fa fa-comments fa-fw"></i>&nbsp; 交易广场</el-menu-item>
+                        <i class="fa fa-comments fa-fw"></i>&nbsp; 交易广场
+                        <sup v-show="isNewUser" class="el-badge__content is-fixed is-dot" style="position:relative;"></sup>
+                        </el-menu-item>
+
                 </el-submenu>
 
                 <el-submenu index="4">
                     <template slot="title">
                         <i class="el-icon-setting"></i>设置
-                        <sup v-show="isNewUser" class="el-badge__content is-fixed" style="position:relative;border:none;">new</sup>
+                       
                     </template>
                     <el-menu-item index="edit">
                         <i class="el-icon-edit-outline"></i>完善个人信息
-                        <sup v-show="isNewUser" class="el-badge__content is-fixed is-dot" style="position:relative;"></sup>
                     </el-menu-item>
                 </el-submenu>
                 <el-submenu index="5">
@@ -76,8 +79,9 @@ export default {
       //获取用户基本信息
       var res = await this.$store.dispatch(
         "userModule/GetUserInfoController",
-        false
+        true
       );
+
       if (res.code == 200) {
         await this.$store.dispatch("userModule/GetUserIcon");
         this.$store.commit("userModule/changeIsNewUser", false);

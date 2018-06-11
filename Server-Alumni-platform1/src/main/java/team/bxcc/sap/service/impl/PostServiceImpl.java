@@ -117,8 +117,6 @@ public class PostServiceImpl implements PostService{
         }
 
         List<Post> postList =postDao.listPostByUserTime(offset,limit,uid);
-        System.out.println("post"+postList);
-
         PageBean<Post> pageBean=new PageBean<>(allPage,curPage);
         pageBean.setList(postList);
         return pageBean;
@@ -139,7 +137,6 @@ public class PostServiceImpl implements PostService{
         postDao.updateScanCount(pid);
         Post post=postDao.getpost(pid);
         //查看是否已经点过赞
-
         if(messageDao.selectLiked(pid,uid,OPERATION_CLICK_LIKE)!=null){
             post.setLiked("true");
         }
@@ -158,14 +155,15 @@ public class PostServiceImpl implements PostService{
     @Override
     public boolean ajaxClickLike(String pid, String replyUser_id) {
         String mid = UUID.randomUUID().toString().replace("-", "");
-
-        Post post = postDao.getTitleUidbyId(pid);
-        String replyname = userDao.getNamebyId(replyUser_id);
-        postDao.updateLikedCount(pid);
-
-
-        messageDao.InsertMessage(mid, pid, post.getUid(), replyUser_id, post.getTitle(), replyname, OPERATION_CLICK_LIKE);
-
+        try {
+            Post post = postDao.getTitleUidbyId(pid);
+            String replyname = userDao.getNamebyId(replyUser_id);
+            postDao.updateLikedCount(pid);
+            messageDao.InsertMessage(mid, pid, post.getUid(), replyUser_id, post.getTitle(), replyname, OPERATION_CLICK_LIKE);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
         return true;
     }
 }

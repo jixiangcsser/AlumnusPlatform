@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean createUser(String user_name, String password, String phone, String email) {
+    public String createUser(String user_name, String password, String phone, String email) {
         String id = UUID.randomUUID().toString().replace("-", "");
         boolean res;
         try {
@@ -57,7 +57,11 @@ public class UserServiceImpl implements UserService {
         } catch (DuplicateKeyException e) {
             throw e;
         }
-        return res;
+        if(res==true){
+            return id;
+        }
+        else
+            return "false";
     }
 
     @Override
@@ -66,9 +70,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean activeUser(String user_name) {
+    public boolean activeUser(String user_Id) {
 
-        return userDao.activeUser(user_name);
+        return userDao.activeUser(user_Id);
+    }
+
+    @Override
+    public boolean IsActiveUser(String user_name) {
+
+        if(userDao.IsActiveUser(user_name)==0){
+            return false;
+        }
+        return true;
     }
 
     @Override

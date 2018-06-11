@@ -25,7 +25,7 @@ public class ForumMessageController {
     MessageService messageService;
     @RequestMapping(method = RequestMethod.GET)
     public HttpResponseObj getMessage(@RequestParam String uid){
-        System.out.println("nihaoya "+uid);
+
         Map<String,List<Message>> MessageMap =messageService.ListMessageByUid(uid);
         try{
             if(MessageMap!=null){

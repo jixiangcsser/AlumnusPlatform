@@ -24,10 +24,10 @@ public class UserEmailController {
     private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public void verifyEmail(@RequestParam String user_name, HttpServletResponse response) {
+    public void verifyEmail(@RequestParam String user_Id, HttpServletResponse response) {
         try {
 
-            if (userService.activeUser(user_name)) {
+            if (userService.activeUser(user_Id)) {
                 try {
                     response.sendRedirect(ConStants.ACTIVED_REDIRECT_URL);
                 } catch (IOException e) {

@@ -40,7 +40,7 @@
 				<!-- 回复区标题 -->
 				<div class="post-reply-title">
 					<h2 class="reply-count"><span class="glyphicon glyphicon-th"></span>&nbsp;{{post.replyCount}}条回帖</h2>
-					<a href="#reply-area">回复</a>
+					<a href="#editor">回复</a>
 				</div>
 				<!-- 回复区内容 -->
 				<div class="post-reply-content">
@@ -143,6 +143,13 @@ export default {
         })
         //this.store.dispatch
     },
+    warnning(val){
+        this.$message({
+                showClose: true,
+                message: val,
+                type: 'warning'
+            });
+    },
     async getPostContent(val){
   
 	   await this.$store.dispatch("forumModule/getPostContent", {
@@ -152,22 +159,18 @@ export default {
         var myPost=await this.$store.getters["forumModule/post"];
         myPost.userName=myPost.user.user_name;//很重要这一步！丢了话页面就不一定能显示了。
         this.PostId=myPost.pid;
-        console.log(myPost.liked);
+     
 
         if(myPost.liked=="true"){//这里之所以不直接赋值，因为后台传来的是string类型，我这里是boolean类型
             this.liked=true;
         }
         var url= this.$store.getters.ali_client.signatureUrl(myPost.user.id);//根据用户id获取你的头像存储的地址
-
-        convertimg2bs64(url).then(function(value){ //返回一个promise的对象，所以一旦成功返回这个值
-            console.log("获取成功");
-            myPost.imgUrl=value;
+        if(myPost.user.headUrlFlag==1){
+            myPost.imgUrl=url;
             
-        },function(error){//失败返回
-            console.log("获取失败");
+        }else{
             myPost.imgUrl="/static/img/default.jpg";
         }
-        ) 
         this.post=myPost; 
        
 	},
@@ -184,8 +187,6 @@ export default {
                             post_id:post_id
                         });
         if(res.code==200){//如果成功就刷新一下页面重新请求一下回复。
-
-            console.log("code="+res.code);
             this.$store.dispatch("forumModule/getPostContent", {
                             pid:post_id
                         });
@@ -198,34 +199,112 @@ export default {
         
     },
     editorCreate(){
+        var that=this;
         //这是wangEditor中给出的获取数据的方法
         var editor = new E('#editor')
-        console.log("shaqing");
-        var httpurl="http://localhost:9090"//这里部署上去需修改。
+        var img=new Image();
+        var reader = new FileReader();
+        //var httpurl="http://localhost:9090"//这里部署上去需修改。
+        var httpurl="https://api.ustcsse.com:443";
         editor.customConfig.showLinkImg = false//隐藏网络图片
         editor.customConfig.uploadImgShowBase64 = true;//添加上传图片的功能
+        editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;//设置图片最大3M
+        editor.customConfig.uploadImgMaxLength = 5;//限制最多上传5长照片；
+        editor.customConfig.customAlert = function (info) {
+           that.warnning(info);//自定义上传失败的提示
+        }
         editor.customConfig.customUploadImg = function (files, insert) {
-           
-            var date = new FormData();
-            date.append("file", files[0]);
-            $.ajax({//请求后台
-                type: "POST",
-                url: httpurl + "/wangEditor/upload",
-                data: date,
-                dataType: 'json',
-                async: false,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (result) {
-                    console.log(result);
-                    insert(result.data);// insert 是获取图片 url 后，插入到编辑器的方法
+            let loadingInstance =that.serviceFullscreen("正在上传图片...请稍等！..");
+            reader.readAsDataURL(files[0]);	
+                 // 选择的文件对象
+            var file = files[0];
+            
+            // 缩放图片需要的canvas
+            var canvas = document.createElement('canvas');
+            var context = canvas.getContext('2d');
+            var that1=that;
+            // base64地址图片加载完毕后
+            img.onload = function () {
+                // 图片原始尺寸
+                var originWidth = this.width;
+                var originHeight = this.height;
+                // 计算出目标压缩尺寸
+                var maxWidth = 600, maxHeight = 600;
+                // 目标尺寸
+                var targetWidth = originWidth, targetHeight = originHeight;
+                var date = new FormData();
+                if (originWidth > maxWidth || originHeight > maxHeight) {
+                    // 图片尺寸超过400x400的限制
+                    if (originWidth / originHeight > maxWidth / maxHeight) {
+                        // 更宽，按照宽度限定尺寸
+                        targetWidth = maxWidth;
+                        targetHeight = Math.round(maxWidth * (originHeight / originWidth));
+                    } else {
+                        targetHeight = maxHeight;
+                        targetWidth = Math.round(maxHeight * (originWidth / originHeight));
+                    }
+                    canvas.width = targetWidth;
+                    canvas.height = targetHeight;
+                    
+                    // 清除画布
+                    context.clearRect(0, 0, targetWidth, targetHeight);
+                    
+                    // 图片压缩
+                    context.drawImage(img, 0, 0, targetWidth, targetHeight);
+                    
+                    //log('图片blob形式ajax上传，当前进度<span id="percent"></span>');
+                    // 转为blob并上传
+                    var that2=that1;
+                    canvas.toBlob(function (blob) {
+                         var that3=that2;
+                        date.append("file", blob);
+                        // 文件base64化，以便获知图片原始尺寸
+                        $.ajax({//请求后台
+                            type: "POST",
+                            url: httpurl + "/api/wangEditor/upload",
+                            data: date,
+                            dataType: 'json',
+                            async: false,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function (result) {
+                                that3.serviceCloseFullscreen(loadingInstance);
+                                insert(result.data);// insert 是获取图片 url 后，插入到编辑器的方法
+                            }
+                        })
+                    }, file.type || 'image/png');
+                    //log('超过400x400的限制，图片大小限制为' + [targetWidth, targetHeight].join('x'));
+                } else {
+                    // log('图片尺寸较小，不压缩');
+                   var that2=that1;
+                    date.append("file", file);
+                    $.ajax({//请求后台
+                        type: "POST",
+                        url: httpurl + "/api/wangEditor/upload",
+                        data: date,
+                        dataType: 'json',
+                        async: false,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (result) {
+                            that2.serviceCloseFullscreen(loadingInstance);
+                            insert(result.data);// insert 是获取图片 url 后，插入到编辑器的方法
+                        }
+                    })
                 }
-            })
+                
+               
+            }
+            reader.onload = function(e) {
+                // 图片尺寸
+                img.src = e.target.result;
+            };
         }
         editor.customConfig.onchange = (html) => {
           this.replyMessage = editor.txt.html() //这里获取了文本编辑器中的内容不加上<p>
-          //console.log(this.postMessage.editorContent);
+
         }
         // 表情面板可以有多个 tab ，因此要配置成一个数组。数组每个元素代表一个 tab 的配置
         editor.customConfig.emotions = [
@@ -309,9 +388,8 @@ export default {
           },
          
         ]
-
-       
         editor.create() ; 
+        
       }
 		
     },

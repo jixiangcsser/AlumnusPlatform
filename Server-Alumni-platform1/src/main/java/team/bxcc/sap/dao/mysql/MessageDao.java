@@ -14,7 +14,7 @@ public interface MessageDao {
      * @param uid
      * @return
      */
-    @Select("select pid,reply_username,operation,displayed_content,msg_time from Message where uid=#{Uid} and uid!=rid order by msg_time desc")
+    @Select("select pid,reply_username,operation,displayed_content,msg_time from message where uid=#{Uid} and uid!=rid order by msg_time desc")
     @Results({
             @Result(column = "reply_username", property = "replyUsername"),
             @Result(column = "operation", property = "operation"),

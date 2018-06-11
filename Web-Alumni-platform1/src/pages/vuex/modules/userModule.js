@@ -27,7 +27,7 @@ const userModule = {
     },
 
     mutations: {
-        changeIsNewUser(state, item) {
+        changeIsNewUser(state, item) {//将是否是新用户定义
             state.isNewUser = item;
         },
         clearInfomation(state) {
@@ -273,7 +273,18 @@ const userModule = {
             });
         },
 
-        // 获取用户基本信息控制器
+       /**
+         * @author Blust
+         * @description 获取用户基本信息控制器
+         * @param {any} {
+         *             state,
+         *             commit,
+         *             rootState
+         *         } 
+         * @param {any} item 
+         * @returns
+         * @version 1.32
+         */
         GetUserInfoController({
             state,
             commit,
@@ -281,7 +292,6 @@ const userModule = {
         }, item) {
             return new Promise(async (on_result, on_error) => {
                 try {
-                    console.log(JSON.parse(atob(rootState.access_token.split(".")[0])).user_id)
                     var response = await axios({
                         url: "/api/userinfo",
                         method: 'get',
@@ -294,40 +304,38 @@ const userModule = {
                             'authorization': rootState.access_token
                         }
                     });
+                   
                     if (response.data.code == 200) {
-                        console.log(response.data.code);
-                        if (item) {
-                            if (localStorage.getItem('user_icon')) {
-                                response.data.obj.img = localStorage.getItem('user_icon');
-                                console("用户id="+response.data.obj.id);
-                            } else {
-                                
-                                let url = rootState.ali_client.signatureUrl(response.data.obj.id);
-                                response.data.obj.img = await convertimg2bs64(url);
-                                localStorage.setItem('user_icon', response.data.obj.img);
-                            }
-                            if (item) {
-                                commit('setuserinfocontroller', response.data);
-                            }
+                        //如果用户已完善基本信息
+                        if (item && response.data.obj.name != "") {
+                            let url = rootState.ali_client.signatureUrl(response.data.obj.id);
+                            response.data.obj.img = await convertimg2bs64(url);
+                            
+                            commit('setuserinfocontroller', response.data);
+                            on_result({
+                                code: 200
+                            });
                         }
-                        on_result({
-                            code: 200
-                        });
+                        //如果用户没有完善基本信息
+                        else {
+                            on_result({
+                                code: 208
+                            });
+                        }
                     } else {
                         on_result({
                             code: response.data.code
                         });
                     }
                 } catch (error) {
-                   // console.log(error);
-
-                    
+                    console.error(error);
                     on_error({
                         code: 999
                     });
                 }
             });
         },
+
         // 获取用户头像
         GetUserIcon({
             state,
@@ -339,12 +347,8 @@ const userModule = {
                     if (localStorage.getItem('user_icon')) {
                         state.img_bs64_url = localStorage.getItem('user_icon');
                     } else {//signatureUrl中阿里的包里自带的，atob是将base64编码过得反编码处理，根据用户的id获取到临时的url
-                        let url = rootState.ali_client.signatureUrl(JSON.parse(atob(rootState.access_token.split(".")[0])).user_id);
-                       
-                        console.log(url);
+                        let url = rootState.ali_client.signatureUrl(JSON.parse(atob(rootState.access_token.split(".")[0])).user_id);  
                         state.img_bs64_url = await convertimg2bs64(url);
-                        
-                        console.log("测试一下"+state.img_bs64_url);
                         localStorage.setItem('user_icon', state.img_bs64_url);
                     }
                     on_result({

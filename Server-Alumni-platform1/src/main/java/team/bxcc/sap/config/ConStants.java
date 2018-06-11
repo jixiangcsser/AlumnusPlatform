@@ -72,15 +72,15 @@ public class ConStants {
     /**
      * actived_email url
      * http://localhost:9090/api/email
-     * http://47.94.229.48:80/api/email
+     * https://api.ustcsse.com:443/api/email
      */
-    public static final String ACTIVED_EMAIL_URL = "http://localhost:9090/api/email";
+    public static final String ACTIVED_EMAIL_URL = "https://api.ustcsse.com:443/api/email";
 
     /**
      * actived_redirect url
-     * http://sse-ustc.oss-cn-beijing.aliyuncs.com/verify
+     * https://sse-ustc.oss-cn-beijing.aliyuncs.com/verify
      */
-    public static final String ACTIVED_REDIRECT_URL = "http://localhost:8085/verify";
+    public static final String ACTIVED_REDIRECT_URL = "https://sse-ustc.oss-cn-beijing.aliyuncs.com/verify";
 
     /**
      * operation的类型回复了帖子

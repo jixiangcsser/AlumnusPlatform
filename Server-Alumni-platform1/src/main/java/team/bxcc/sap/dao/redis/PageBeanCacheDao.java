@@ -9,6 +9,10 @@ import team.bxcc.sap.forum.model.Post;
 
 import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
+
+/**
+ * 暂时未启用！
+ */
 @Component
 public class PageBeanCacheDao {
     @Resource
@@ -16,8 +20,6 @@ public class PageBeanCacheDao {
 
     public void setCacheValue(int Curpage,String ReadType ,PageBean<Post> PageBean) {
         String key=String.valueOf(Curpage)+ReadType;
-        System.out.println(key+"呜呜呜呜呜");
-        System.out.println(PageBean);
         try {
             redisTemplate.opsForValue().set(key,PageBean);//向redis里存入数据和设置缓存时间
 
@@ -31,7 +33,7 @@ public class PageBeanCacheDao {
     public PageBean<Post> getCacheValue(int Curpage,String ReadType) {
         String key=String.valueOf(Curpage)+ReadType;
         if (redisTemplate.opsForValue().get(key)!=null) {
-            System.out.println(key+"呜呜呜呜呜有意义");
+
             return redisTemplate.opsForValue().get(key);
         }
         return null;

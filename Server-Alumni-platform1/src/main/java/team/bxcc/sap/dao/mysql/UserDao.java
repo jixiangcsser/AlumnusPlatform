@@ -52,9 +52,14 @@ public interface UserDao {
     /**
      * 激活
      */
-    @Update("UPDATE user SET actived='1' WHERE user_name =#{user_name}")
-    boolean activeUser(@Param("user_name") String user_name);
+    @Update("UPDATE user SET actived='1' WHERE id =#{user_Id}")
+    boolean activeUser(@Param("user_Id") String user_Id);
 
+    /**
+     * 查看是否激活了
+     */
+    @Select("SELECT actived from user where user_name=#{user_name} ")
+    int IsActiveUser(@Param("user_name") String user_name);
     /**
      * 删除用户
      */

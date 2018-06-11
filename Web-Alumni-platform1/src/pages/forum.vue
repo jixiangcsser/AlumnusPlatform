@@ -165,7 +165,6 @@ export default {
 		let that=this;
 		RecenetUsersList.forEach(function(recentUser){//这里我给每个post的转换成字符的图片赋值
 			//reply.imgUrl=reply.user.headUrl;
-			console.log(recentUser);
             let url= that.$store.getters.ali_client.signatureUrl(recentUser.id);//根据用户id获取你的头像存储的地址
             if(recentUser.headUrlFlag==0){
                 recentUser.imgUrl='/static/img/default.jpg'
@@ -182,7 +181,6 @@ export default {
 		let that=this;
 		hotUsersList.forEach(function(hotUser){//这里我给每个post的转换成字符的图片赋值
 			//reply.imgUrl=reply.user.headUrl;
-			console.log(hotUser);
             let url= that.$store.getters.ali_client.signatureUrl(hotUser.id);//根据用户id获取你的头像存储的地址
             if(hotUser.headUrlFlag==0){
                 hotUser.imgUrl='/static/img/default.jpg'
@@ -211,8 +209,7 @@ export default {
     },
 	handleCurrentChange(val) {//当你选择页面的时候的应该从新请求
 		var readType=sessionStorage.getItem("readType");
-		console.log("我问问 ");
-		console.log(readType);
+		
         this.getPageList(val,readType);
 	},
 	getPageList(val,readtype){

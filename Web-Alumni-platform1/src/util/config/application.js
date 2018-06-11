@@ -20,7 +20,7 @@ var axiosBaseURL = "";
 if (window.location.href.includes("localhost")) {
     axiosBaseURL = 'http://localhost:9090';
 } else {
-    axiosBaseURL = 'http://47.94.229.48:80';
+    axiosBaseURL = 'https://api.ustcsse.com:443';
 }
 
 

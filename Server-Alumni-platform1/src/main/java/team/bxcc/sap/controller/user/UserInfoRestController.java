@@ -106,7 +106,6 @@ public class UserInfoRestController {
     public HttpResponseObj create(@RequestUserInfo UserInfo userinfo) {
         try {
 
-            System.out.println("出来吧"+userinfo.getId());
             if (userInfoService.createUserInfo(userinfo)&&userService.updateHeadUrlFlag(userinfo.getId())) {
 
                 return new HttpResponseObj(HttpStatus.OK, "create userinfo success!");

@@ -29,7 +29,7 @@ public interface UserService {
     /**
      * 创建用户
      */
-    boolean createUser(String user_name, String password, String phone, String email);
+    String createUser(String user_name, String password, String phone, String email);
 
     /**
      * 更改用户信息
@@ -37,10 +37,14 @@ public interface UserService {
     boolean updateUser(String user_name, String new_password);
 
     /**
-     * 用户激活
+     * 用户激活依赖用户ID
      */
-    boolean activeUser(String user_name);
+    boolean activeUser(String user_Id);
 
+    /**
+     * 查看用户是否激活
+     */
+    boolean IsActiveUser(String user_name);
     /**
      * 删除用户
      */
